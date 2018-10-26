@@ -1,12 +1,13 @@
 {
-  "name": "web_rtc_test",
+  "name": "web_rtc_test_fe",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-materialize": "^2.4.7",
-    "react-scripts": "2.0.5"
+    "react-scripts": "2.0.5",
+    "socket.io-client": "^2.1.1"
   },
   "scripts": {
     "start": "react-scripts start",
