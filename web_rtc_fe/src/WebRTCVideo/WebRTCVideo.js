@@ -6,7 +6,7 @@ class WebRTCVideo extends Component {
     return (
       <CardPanel>
         <h3>{this.props.videoName}</h3>
-        <video src={this.props.videoSrc} autoPlay="true"></video>
+        <video ref={this.props.videoRef} autoPlay="true"></video>
       </CardPanel>
     );
   }

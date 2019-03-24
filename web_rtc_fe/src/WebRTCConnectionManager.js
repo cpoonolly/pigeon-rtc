@@ -50,18 +50,6 @@ export default class WebRTCConnectionManager {
     return this.remoteMediaStreamPromise;
   }
 
-  async getLocalMediaStreamURL() {
-    let localMediaStream = await this.getLocalMediaStream();
-
-    return window.URL.createObjectURL(localMediaStream);
-  }
-
-  async getRemoteMediaStreamURL() {
-    let remoteMediaStream = await this.getRemoteMediaStream();
-
-    return window.URL.createObjectURL(remoteMediaStream);
-  }
-
   /* Initiate a call */
   async call() {
     // add local media stream tracks to rtc connection
