@@ -6,21 +6,23 @@ const ICE_CONFIGURATION = {
   ]
 };
 
-const DEFAULT_SOCKET_URL = 'http://localhost:8080';
+// const SOCKET_URL = 'http://localhost:8080';
 
 export default class WebRTCConnectionManager {
-  constructor(serverUrl) {
+  constructor() {
     this.rtcConnection = new RTCPeerConnection(ICE_CONFIGURATION);
-    this.socket = io.connect(serverUrl || DEFAULT_SOCKET_URL);
+    this.connectionData = {description: null, candidates: []};
+
+    // this.socket = io.connect(SOCKET_URL);
 
     this.localMediaStreamPromise = null;
     this.remoteMediaStreamPromise = null;
 
     this.rtcConnection.onicecandidate = this.handleIceCandidate.bind(this);
 
-    this.socket.on('offer', this.handleOffer.bind(this));
-    this.socket.on('answer', this.handleAnswer.bind(this));
-    this.socket.on('ice_candidate', this.handleRemoteIceCandidate.bind(this));
+    // this.socket.on('offer', this.handleOffer.bind(this));
+    // this.socket.on('answer', this.handleAnswer.bind(this));
+    // this.socket.on('ice_candidate', this.handleRemoteIceCandidate.bind(this));
   }
 
   async getLocalMediaStream() {
@@ -59,11 +61,13 @@ export default class WebRTCConnectionManager {
     // send an offer
     let localDescription = await this.rtcConnection.createOffer();
     await this.rtcConnection.setLocalDescription(localDescription);
-    this.socket.emit('offer', {description: this.rtcConnection.localDescription});
+    this.connectionData.description = this.rtcConnection.localDescription;
+
+    // this.socket.emit('offer', {description: this.rtcConnection.localDescription});
   }
 
   /* Handle an incoming call */
-  async handleOffer({description}) {
+  async handleOffer({description, candidates}) {
     console.log(`handleOffer: ${description}`);
 
     await this.rtcConnection.setRemoteDescription(description);
@@ -74,7 +78,13 @@ export default class WebRTCConnectionManager {
 
     // send an answer
     await this.rtcConnection.setLocalDescription(await this.rtcConnection.createAnswer());
-    this.socket.emit('answer', {description: this.rtcConnection.localDescription});
+
+    this.connectionData.description = this.rtcConnection.localDescription;
+    for (let i = 0; i < candidates.length; i++) {
+      await this.handleRemoteIceCandidate(candidates[i]);
+    }
+
+    // this.socket.emit('answer', {description: this.rtcConnection.localDescription});
   }
 
   /* Handle an answer to our offer (if we initiated the call) */
@@ -87,7 +97,8 @@ export default class WebRTCConnectionManager {
     console.log(`handleIceCandidate: ${candidate}`);
 
     if (!candidate) return;
-    this.socket.emit('ice_candidate', {candidate});
+    // this.socket.emit('ice_candidate', {candidate});
+    this.connectionData.candidates.push({candidate});
   }
 
   async handleRemoteIceCandidate({candidate}) {
