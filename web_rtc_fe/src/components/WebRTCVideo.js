@@ -23,7 +23,7 @@ class WebRTCVideo extends Component {
           <Typography variant="h5" gutterBottom>
             {this.props.videoName}
           </Typography>
-          <video ref={this.props.videoRef} autoPlay="true"></video>
+          <video ref={this.props.videoRef} autoPlay={true}></video>
         </CardContent>
       </Card>
     );

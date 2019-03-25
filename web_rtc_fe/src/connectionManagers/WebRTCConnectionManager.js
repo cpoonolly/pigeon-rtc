@@ -21,6 +21,7 @@ export default class WebRTCConnectionManager {
     this.socket.on('offer', this.handleOffer.bind(this));
     this.socket.on('answer', this.handleAnswer.bind(this));
     this.socket.on('ice_candidate', this.handleRemoteIceCandidate.bind(this));
+    // this.socket.on('disconnect', this.handleDisconnect.bind(this));
   }
 
   async getLocalMediaStream() {

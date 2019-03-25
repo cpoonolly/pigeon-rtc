@@ -2,14 +2,15 @@ import React, { Component } from 'react';
 
 // material-ui
 import { withStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import Grid from '@material-ui/core/Grid';
 import Icon from '@material-ui/core/Icon';
+import TextField from '@material-ui/core/TextField';
 
 // web rtc stuff
 import WebRTCVideo from '../components/WebRTCVideo';
-import WebRTCControlPanel from '../components/WebRTCControlPanel';
 import WebRTCConnectionManager from '../connectionManagers/WebRTCConnectionManager';
 
 const DEFAULT_SOCKET_URL = 'http://localhost:8080';
@@ -21,7 +22,18 @@ const styles = ((theme) => ({
   },
   doublePadded: {
     padding: theme.spacing.unit * 2,
-  }
+  },
+  controlPanelBtnContainer: {
+    paddingRight: theme.spacing.unit,
+    paddingLeft: theme.spacing.unit,
+  },
+  controlPanelBtn: {
+    width: '100%',
+    height: '100%',
+  },
+  controlPanelBtnIcon: {
+    marginLeft: '15px'
+  },
 }));
 
 class WebRTCWithServerTab extends Component {
@@ -31,13 +43,6 @@ class WebRTCWithServerTab extends Component {
     this.state = {
       serverUrl: DEFAULT_SOCKET_URL,
       isServerSet: false
-    };
-
-    this.controlPanel = {
-      buttons: [
-        {id: 'call_start', render: () => this.renderCallBtn(), onClick: () => this.handleCallStart()},
-        {id: 'call_end', render: () => this.renderEndCallBtn(), onClick: () => this.handleCallEnd()},
-      ]
     };
 
     this.rtcConnectionMngr = null;
@@ -95,14 +100,6 @@ class WebRTCWithServerTab extends Component {
       .then(() => this.remoteVideoEl.srcObject = this.remoteVideoStream);
   }
 
-  renderCallBtn() {
-    return (<React.Fragment>Call <Icon style={{marginLeft: '15px'}}>call</Icon></React.Fragment>);
-  }
-
-  renderEndCallBtn() {
-    return (<React.Fragment>End Call <Icon style={{marginLeft: '15px'}}>call_end</Icon></React.Fragment>);
-  }
-
   renderSetServerUI() {
     const { classes } = this.props;
 
@@ -138,10 +135,33 @@ class WebRTCWithServerTab extends Component {
         </Grid>
         <Grid container spacing={12} justify="center" className={classes.doublePadded}>
           <Grid item xs={6}>
-            <WebRTCControlPanel controlPanel={this.controlPanel}></WebRTCControlPanel>
+            {this.renderVideoChatUIControlPanel()}
           </Grid>
         </Grid>
       </div>
+    );
+  }
+
+  renderVideoChatUIControlPanel() {
+    const { classes, controlPanel } = this.props;
+  
+    return (
+      <Card>
+        <CardContent>  
+          <Grid container spacing={12} justify="space-evenly" alignItems="center">
+            <Grid item xs={4} className={classes.controlPanelBtnContainer}>
+              <Button variant="contained" color="primary" className={classes.controlPanelBtn} onClick={() => this.handleCallStart()}>
+                Call <Icon className={classes.controlPanelBtnIcon}>call</Icon>
+              </Button>
+            </Grid>
+            <Grid item xs={4} className={classes.controlPanelBtnContainer}>
+              <Button variant="contained" color="primary" className={classes.controlPanelBtn} onClick={() => this.handleCallEnd()}>
+                End Call <Icon className={classes.controlPanelBtnIcon}>call_end</Icon>
+              </Button>
+            </Grid>
+          </Grid>
+        </CardContent>
+      </Card>
     );
   }
 
