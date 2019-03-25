@@ -1,8 +1,8 @@
 {
-  "name": "carrier_pigeon_rtc",
+  "name": "pigeon-rtc",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://cpoonolly.github.io/web_rtc_test",
+  "homepage": "https://cpoonolly.github.io/pigeon-rtc",
   "dependencies": {
     "@material-ui/core": "^3.9.2",
     "gh-pages": "^2.0.1",
