@@ -143,8 +143,11 @@ class WebRTCWithCarrierPigeonTab extends Component {
           <Typography variant="h5">
             Setup a WebRTC connection via Carrier Pigeon
           </Typography>
-          <Typography variant="subtitle2">
-            (now compatible with smoke signals &amp; messages in a bottle!)
+          <Typography variant="subtitle1">
+            now compatible with smoke signals &amp; messages in a bottle!
+          </Typography>
+          <Typography variant="caption">
+            Note: Connections can be setup via pigeon or like literally anything else...
           </Typography>
         </FormLabel>
         <RadioGroup
@@ -201,7 +204,7 @@ class WebRTCWithCarrierPigeonTab extends Component {
 
     let remoteConnectionTextField = (
       <TextField
-        label={`${startOrAccept === 'start' ? 'Answer' : 'Offer'} - Get this from your friend! (via pigeon)`}
+        label={'Get this from your friend!'}
         onChange={(event) => this.handleRemoteConnectionData(event.target.value)}
         value={remoteConnectionData}
         multiline
@@ -214,7 +217,7 @@ class WebRTCWithCarrierPigeonTab extends Component {
 
     let localConnectionTextField = (
       <TextField
-        label={`${startOrAccept === 'start' ? 'Offer' : 'Answer'} - Send this to your friend! (via pigeon)`}
+        label={'Send this to your friend!'}
         disabled
         value={localConnectionData}
         multiline
