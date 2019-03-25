@@ -12,7 +12,7 @@ import Tab from '@material-ui/core/Tab';
 
 // web rtc stuff
 import WebRTCWithServerTab from './tabs/WebRTCWithServerTab';
-import WebRTCManualTab from './tabs/WebRTCManualTab';
+import WebRTCWithCarrierPigeonTab from './tabs/WebRTCWithCarrierPigeonTab';
 
 const theme = createMuiTheme({
   palette: {
@@ -23,7 +23,7 @@ const theme = createMuiTheme({
 
 const TAB_OPTIONS = Object.freeze({
   SERVER: 'server',
-  MANUAL: 'manual',
+  PIGEON: 'pigeon',
 });
 
 class App extends Component {
@@ -51,11 +51,11 @@ class App extends Component {
             <AppBar position="static">
               <Tabs value={currentTab} onChange={this.handleTabChange}>
                 <Tab label="Connect by Server" value={TAB_OPTIONS.SERVER}/>
-                <Tab label="Connect Manually" value={TAB_OPTIONS.MANUAL}/>
+                <Tab label="Connect by Pigeon" value={TAB_OPTIONS.PIGEON}/>
               </Tabs>
             </AppBar>
             {currentTab === TAB_OPTIONS.SERVER && <WebRTCWithServerTab></WebRTCWithServerTab>}
-            {currentTab === TAB_OPTIONS.MANUAL && <WebRTCManualTab></WebRTCManualTab>}
+            {currentTab === TAB_OPTIONS.PIGEON && <WebRTCWithCarrierPigeonTab></WebRTCWithCarrierPigeonTab>}
           </div>
         </MuiThemeProvider>
       </CssBaseline>

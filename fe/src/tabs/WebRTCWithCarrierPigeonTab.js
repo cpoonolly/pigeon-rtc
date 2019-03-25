@@ -14,7 +14,7 @@ import FormLabel from '@material-ui/core/FormLabel';
 
 // web rtc stuff
 import WebRTCVideo from '../components/WebRTCVideo';
-import ManualWebRTCConnectionManager from '../connectionManagers/ManualWebRTCConnectionManager';
+import CarrierPigeonRTCConnectionMngr from '../connectionManagers/CarrierPigeonRTCConnectionMngr';
 
 const styles = ((theme) => ({
   root: {
@@ -38,7 +38,7 @@ const styles = ((theme) => ({
   },
 }));
 
-class WebRTCManualTab extends Component {
+class WebRTCWithCarrierPigeonTab extends Component {
   constructor(props) {
     super(props);
 
@@ -49,8 +49,8 @@ class WebRTCManualTab extends Component {
       remoteConnectionData: '',
     };
 
-    this.rtcConnectionManager = new ManualWebRTCConnectionManager();
-    this.rtcConnectionManager.subscribe((localConnectionData) => this.handleLocalConnectionData(localConnectionData));
+    this.rtcConnectionMngr = new CarrierPigeonRTCConnectionMngr();
+    this.rtcConnectionMngr.subscribe((localConnectionData) => this.handleLocalConnectionData(localConnectionData));
 
     // since we're using MediaStream objects need to store these as members and user refs to set the video src's
     this.localVideoStream = null;
@@ -66,7 +66,7 @@ class WebRTCManualTab extends Component {
   setLocalVideoEl(el) {
     this.localVideoEl = el;
 
-    this.rtcConnectionManager.getLocalMediaStream()
+    this.rtcConnectionMngr.getLocalMediaStream()
       .then((mediaStream) => this.localVideoStream = mediaStream)
       .then(() => {
         if (this.localVideoEl) this.localVideoEl.srcObject = this.localVideoStream;
@@ -76,7 +76,7 @@ class WebRTCManualTab extends Component {
   setRemoteVideoEl(el) {
     this.remoteVideoEl = el;
 
-    this.rtcConnectionManager.getRemoteMediaStream()
+    this.rtcConnectionMngr.getRemoteMediaStream()
       .then((mediaStream) => this.remoteVideoStream = mediaStream)
       .then(() => {
         if (this.remoteVideoEl) this.remoteVideoEl.srcObject = this.remoteVideoStream;
@@ -94,7 +94,7 @@ class WebRTCManualTab extends Component {
   handleStartOrAcceptSelection(startOrAccept) {
     this.setState({startOrAccept});
     if (startOrAccept === 'start') {
-      this.rtcConnectionManager.createOffer();
+      this.rtcConnectionMngr.createOffer();
     }
   }
 
@@ -103,10 +103,10 @@ class WebRTCManualTab extends Component {
 
     try {
       if (this.state.startOrAccept === 'start') {
-        this.rtcConnectionManager.handleAnswer(remoteConnectionData)
+        this.rtcConnectionMngr.handleAnswer(remoteConnectionData)
           .then(() => this.setState({isConnected: true}));
       } else if (this.state.startOrAccept === 'accept') {
-        this.rtcConnectionManager.handleOffer(remoteConnectionData)
+        this.rtcConnectionMngr.handleOffer(remoteConnectionData)
           .then(() => this.setState({isConnected: true}));
       }
     } catch (error) {
@@ -140,7 +140,7 @@ class WebRTCManualTab extends Component {
     return (
       <FormControl component="fieldset">
         <FormLabel component="legend" className={classes.startOrAcceptFormLabel}>
-          Start or Accept a WebRTC Connection manually
+          Start or Accept a WebRTC Connection via Carrier Pigeon
         </FormLabel>
         <RadioGroup
           row
@@ -260,4 +260,4 @@ class WebRTCManualTab extends Component {
   }
 }
 
-export default withStyles(styles)(WebRTCManualTab);
+export default withStyles(styles)(WebRTCWithCarrierPigeonTab);

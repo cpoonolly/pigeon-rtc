@@ -4,25 +4,17 @@ const ICE_CONFIGURATION = {
   ]
 };
 
-// const SOCKET_URL = 'http://localhost:8080';
-
-export default class WebRTCConnectionManager {
+export default class CarrierPigeonRTCConnectionMngr {
   constructor() {
     this.rtcConnection = new RTCPeerConnection(ICE_CONFIGURATION);
 
     this.localConnectionData = {description: null, candidates: []};
     this.subscribers = new Set();
 
-    // this.socket = io.connect(SOCKET_URL);
-
     this.localMediaStreamPromise = null;
     this.remoteMediaStreamPromise = null;
 
     this.rtcConnection.onicecandidate = this.handleIceCandidate.bind(this);
-
-    // this.socket.on('offer', this.handleOffer.bind(this));
-    // this.socket.on('answer', this.handleAnswer.bind(this));
-    // this.socket.on('ice_candidate', this.handleRemoteIceCandidate.bind(this));
   }
 
   subscribe(handler) {
@@ -55,7 +47,6 @@ export default class WebRTCConnectionManager {
     if (this.remoteMediaStreamPromise === null) {
       this.remoteMediaStreamPromise = new Promise((resolve, reject) => {
         this.rtcConnection.ontrack = ((event) => {
-          console.log('onRemoteTrack');
           resolve(event.streams[0]);
         });
       });
@@ -73,10 +64,9 @@ export default class WebRTCConnectionManager {
     // send an offer
     let localDescription = await this.rtcConnection.createOffer();
     await this.rtcConnection.setLocalDescription(localDescription);
+    
     this.localConnectionData.description = this.rtcConnection.localDescription;
-
     this.notifyAll();
-    // this.socket.emit('offer', {description: this.rtcConnection.localDescription});
   }
 
   /* Handle an incoming call */
@@ -98,7 +88,6 @@ export default class WebRTCConnectionManager {
     }
 
     this.notifyAll();
-    // this.socket.emit('answer', {description: this.rtcConnection.localDescription});
   }
 
   /* Handle an answer to our offer (if we initiated the call) */
@@ -118,7 +107,6 @@ export default class WebRTCConnectionManager {
     if (!candidate) return;
     this.localConnectionData.candidates.push({candidate});
     this.notifyAll();
-    // this.socket.emit('ice_candidate', {candidate});
   }
 
   async handleRemoteIceCandidate({candidate}) {
