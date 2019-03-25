@@ -4,10 +4,19 @@ const ICE_CONFIGURATION = {
   ]
 };
 
-export default class CarrierPigeonRTCConnectionMngr {
+export default class PigeonRTCConnectionMngr {
   constructor() {
     this.rtcConnection = new RTCPeerConnection(ICE_CONFIGURATION);
 
+    /*
+      Unfortunately sending ice candidates via carrier pigeon is most likely a slow and arduous process...
+      ...and likely our users have a limited fleet of pigeons to send out
+      ...so the hacky solution is to instead blob our description + ice candidates into a single message.
+      ...this way way our users only need to send out a single pigeon out leaving the rest of the "kit" to relax & frolic
+      ...while this likely might cause issues in situations that require multiple candidates to be sent back and forth,
+         (ex: when stun fails and we need to resort to a turn server? - my knowledge on the matter is actually quite limited...)
+         still i think for the sake of our pigeon friends we can make this concession
+    */
     this.localConnectionData = {description: null, candidates: []};
     this.subscribers = new Set();
 
@@ -33,7 +42,7 @@ export default class CarrierPigeonRTCConnectionMngr {
     if (this.localMediaStreamPromise === null) {
       this.localMediaStreamPromise = new Promise((resolve, reject) => {
         navigator.getUserMedia(
-          {video: true, audio: true},
+          {video: true},
           (stream) => resolve(stream),
           () => reject(new Error('Failed to get local media stream'))
         );

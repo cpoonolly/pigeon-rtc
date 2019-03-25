@@ -10,11 +10,11 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
-
+import Typography from '@material-ui/core/Typography';
 
 // web rtc stuff
-import WebRTCVideo from '../components/WebRTCVideo';
-import CarrierPigeonRTCConnectionMngr from '../connectionManagers/CarrierPigeonRTCConnectionMngr';
+import WebRTCVideo from './WebRTCVideo';
+import PigeonRTCConnectionMngr from '../connectionManagers/PigeonRTCConnectionMngr';
 
 const styles = ((theme) => ({
   root: {
@@ -49,7 +49,7 @@ class WebRTCWithCarrierPigeonTab extends Component {
       remoteConnectionData: '',
     };
 
-    this.rtcConnectionMngr = new CarrierPigeonRTCConnectionMngr();
+    this.rtcConnectionMngr = new PigeonRTCConnectionMngr();
     this.rtcConnectionMngr.subscribe((localConnectionData) => this.handleLocalConnectionData(localConnectionData));
 
     // since we're using MediaStream objects need to store these as members and user refs to set the video src's
@@ -140,13 +140,19 @@ class WebRTCWithCarrierPigeonTab extends Component {
     return (
       <FormControl component="fieldset">
         <FormLabel component="legend" className={classes.startOrAcceptFormLabel}>
-          Start or Accept a WebRTC Connection via Carrier Pigeon
+          <Typography variant="h5">
+            Setup a WebRTC connection via Carrier Pigeon
+          </Typography>
+          <Typography variant="subtitle2">
+            (now compatible with smoke signals &amp; messages in a bottle!)
+          </Typography>
         </FormLabel>
         <RadioGroup
           row
           name="start_or_accept"
           value={startOrAccept}
           onChange={(event) => this.handleStartOrAcceptSelection(event.target.value)}
+          style={{display: 'flex', justifyContent: 'space-evenly'}}
         >
           <FormControlLabel
             value="start"
@@ -195,7 +201,7 @@ class WebRTCWithCarrierPigeonTab extends Component {
 
     let remoteConnectionTextField = (
       <TextField
-        label={`${startOrAccept === 'start' ? 'Answer' : 'Offer'} - Get this from your friend!`}
+        label={`${startOrAccept === 'start' ? 'Answer' : 'Offer'} - Get this from your friend! (via pigeon)`}
         onChange={(event) => this.handleRemoteConnectionData(event.target.value)}
         value={remoteConnectionData}
         multiline
@@ -208,7 +214,7 @@ class WebRTCWithCarrierPigeonTab extends Component {
 
     let localConnectionTextField = (
       <TextField
-        label={`${startOrAccept === 'start' ? 'Offer' : 'Answer'} - Send this to your friend!`}
+        label={`${startOrAccept === 'start' ? 'Offer' : 'Answer'} - Send this to your friend! (via pigeon)`}
         disabled
         value={localConnectionData}
         multiline
