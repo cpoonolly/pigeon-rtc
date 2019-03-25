@@ -1,7 +1,7 @@
 {
   "main.css": "/pigeon-rtc/static/css/main.6e7ad068.chunk.css",
-  "main.js": "/pigeon-rtc/static/js/main.ea418e37.chunk.js",
-  "main.js.map": "/pigeon-rtc/static/js/main.ea418e37.chunk.js.map",
+  "main.js": "/pigeon-rtc/static/js/main.c36fec45.chunk.js",
+  "main.js.map": "/pigeon-rtc/static/js/main.c36fec45.chunk.js.map",
   "static/css/1.4991a863.chunk.css": "/pigeon-rtc/static/css/1.4991a863.chunk.css",
   "static/js/1.50e09777.chunk.js": "/pigeon-rtc/static/js/1.50e09777.chunk.js",
   "static/js/1.50e09777.chunk.js.map": "/pigeon-rtc/static/js/1.50e09777.chunk.js.map",
@@ -12,9 +12,9 @@
   "static/media/WebRTC_signalling.png": "/pigeon-rtc/static/media/WebRTC_signalling.04b3f57d.png",
   "static/media/WebRTC_needs_servers.png": "/pigeon-rtc/static/media/WebRTC_needs_servers.18a98a74.png",
   "static/media/PigeonRTC_signalling.png": "/pigeon-rtc/static/media/PigeonRTC_signalling.8ef6af10.png",
-  "static/css/main.6e7ad068.chunk.css.map": "/pigeon-rtc/static/css/main.6e7ad068.chunk.css.map",
   "static/css/1.4991a863.chunk.css.map": "/pigeon-rtc/static/css/1.4991a863.chunk.css.map",
+  "static/css/main.6e7ad068.chunk.css.map": "/pigeon-rtc/static/css/main.6e7ad068.chunk.css.map",
   "index.html": "/pigeon-rtc/index.html",
-  "precache-manifest.366ec4505b21e6a816c5f41a44e8adb4.js": "/pigeon-rtc/precache-manifest.366ec4505b21e6a816c5f41a44e8adb4.js",
+  "precache-manifest.fb822e9b7d6d4439ecd2672a652d537c.js": "/pigeon-rtc/precache-manifest.fb822e9b7d6d4439ecd2672a652d537c.js",
   "service-worker.js": "/pigeon-rtc/service-worker.js"
 }
