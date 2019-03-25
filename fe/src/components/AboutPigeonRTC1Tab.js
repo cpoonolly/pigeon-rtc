@@ -35,6 +35,9 @@ class AboutPigeonRTC1 extends Component {
         </Grid>
         <Grid item className={classes.aboutTabSection}>
           <Typography variant="h4">
+            Setup video chats using carrier pigeons!
+          </Typography>
+          <Typography variant="h6">
             It's <a href="https://webrtc.org/">WebRTC</a> without the signalling servers ..and with pigeons!
           </Typography>
           <Typography variant="subtitle1">
