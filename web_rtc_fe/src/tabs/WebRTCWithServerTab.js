@@ -143,7 +143,7 @@ class WebRTCWithServerTab extends Component {
   }
 
   renderVideoChatUIControlPanel() {
-    const { classes, controlPanel } = this.props;
+    const { classes } = this.props;
   
     return (
       <Card>

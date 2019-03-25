@@ -2,8 +2,10 @@
   "name": "web_rtc_test_fe",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://cpoonolly.github.io/web_rtc_test",
   "dependencies": {
     "@material-ui/core": "^3.9.2",
+    "gh-pages": "^2.0.1",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-scripts": "2.0.5",
@@ -11,6 +13,8 @@
     "typeface-roboto": "0.0.54"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
