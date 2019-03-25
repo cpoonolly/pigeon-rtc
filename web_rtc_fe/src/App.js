@@ -1,76 +1,64 @@
 import React, { Component } from 'react';
 import './App.css';
 
-// materialize
-import { Row, Col } from 'react-materialize';
+// material-ui
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import blue from '@material-ui/core/colors/blue';
+import purple from '@material-ui/core/colors/purple';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import AppBar from '@material-ui/core/AppBar';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+
 // web rtc stuff
-import WebRTCVideo from './WebRTCVideo/WebRTCVideo';
-import WebRTCControlPanel from './WebRTCControlPanel/WebRTCControlPanel';
-import WebRTCConnectionManager from './WebRTCConnectionManager';
+import WebRTCWithServerTab from './tabs/WebRTCWithServerTab';
+import WebRTCManualTab from './tabs/WebRTCManualTab';
+
+const theme = createMuiTheme({
+  palette: {
+    primary: blue,
+    secondary: purple
+  },
+});
+
+const TAB_OPTIONS = Object.freeze({
+  SERVER: 'server',
+  MANUAL: 'manual',
+});
 
 class App extends Component {
   constructor(props) {
     super(props);
 
-    this.rtcConnectionMngr = new WebRTCConnectionManager();
+    this.state = {
+      currentTab: TAB_OPTIONS.SERVER
+    };
 
-    // since we're using MediaStream objects need to store these as members and user refs to set the video src's
-    this.localVideoStream = null;
-    this.localVideoEl = null;
-    
-    this.remoteVideoStream = null;
-    this.remoteVideoEl = null;
-
-    this.handleCallStart = this.handleCallStart.bind(this);
-    this.handleCallEnd = this.handleCallEnd.bind(this);
-
-    this.setLocalVideoEl = this.setLocalVideoEl.bind(this);
-    this.setRemoteVideoEl = this.setRemoteVideoEl.bind(this);
+    this.handleTabChange = this.handleTabChange.bind(this);
   }
 
-  handleCallStart() {
-    console.log('Call Started!');
-
-    this.rtcConnectionMngr.call();
-  }
-
-  handleCallEnd() {
-    console.log('Call Ended!');
-
-    console.log('...no it didn\'t...');
-  }
-
-  setLocalVideoEl(el) {
-    this.localVideoEl = el;
-
-    this.rtcConnectionMngr.getLocalMediaStream()
-      .then((mediaStream) => this.localVideoStream = mediaStream)
-      .then(() => this.localVideoEl.srcObject = this.localVideoStream);
-  }
-
-  setRemoteVideoEl(el) {
-    this.remoteVideoEl = el;
-
-    this.rtcConnectionMngr.getRemoteMediaStream()
-      .then((mediaStream) => this.remoteVideoStream = mediaStream)
-      .then(() => this.remoteVideoEl.srcObject = this.remoteVideoStream);
+  handleTabChange(event, value) {
+    this.setState({currentTab: value});
   }
 
   render() {
+    const { currentTab } = this.state;
+
     return (
-      <div className="App">
-        <Row>
-          <Col s={6}>
-            <WebRTCVideo videoName="Local" videoRef={this.setLocalVideoEl}/>
-          </Col>
-          <Col s={6}>
-            <WebRTCVideo videoName="Remote" videoRef={this.setRemoteVideoEl}/>
-          </Col>
-        </Row>
-        <Row>
-          <WebRTCControlPanel handleCallStart={this.handleCallStart} handleCallEnd={this.handleCallEnd}></WebRTCControlPanel>
-        </Row>
-      </div>
+      <CssBaseline>
+        <MuiThemeProvider theme={theme}>
+          <div className="App">
+            <AppBar position="static">
+              <Tabs value={currentTab} onChange={this.handleTabChange}>
+                <Tab label="Connect by Server" value={TAB_OPTIONS.SERVER}/>
+                <Tab label="Connect Manually" value={TAB_OPTIONS.MANUAL}/>
+              </Tabs>
+            </AppBar>
+            {currentTab === TAB_OPTIONS.SERVER && <WebRTCWithServerTab></WebRTCWithServerTab>}
+            {currentTab === TAB_OPTIONS.MANUAL && <WebRTCManualTab></WebRTCManualTab>}
+          </div>
+        </MuiThemeProvider>
+      </CssBaseline>
     );
   }
 }

@@ -6,12 +6,12 @@ const ICE_CONFIGURATION = {
   ]
 };
 
-const SOCKET_URL = 'http://localhost:8080';
+const DEFAULT_SOCKET_URL = 'http://localhost:8080';
 
 export default class WebRTCConnectionManager {
-  constructor() {
+  constructor(serverUrl) {
     this.rtcConnection = new RTCPeerConnection(ICE_CONFIGURATION);
-    this.socket = io.connect(SOCKET_URL);
+    this.socket = io.connect(serverUrl || DEFAULT_SOCKET_URL);
 
     this.localMediaStreamPromise = null;
     this.remoteMediaStreamPromise = null;
@@ -21,6 +21,7 @@ export default class WebRTCConnectionManager {
     this.socket.on('offer', this.handleOffer.bind(this));
     this.socket.on('answer', this.handleAnswer.bind(this));
     this.socket.on('ice_candidate', this.handleRemoteIceCandidate.bind(this));
+    // this.socket.on('disconnect', this.handleDisconnect.bind(this));
   }
 
   async getLocalMediaStream() {
