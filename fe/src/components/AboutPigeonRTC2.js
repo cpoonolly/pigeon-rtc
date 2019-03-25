@@ -42,7 +42,7 @@ class AboutPigeonRTC2 extends Component {
           </Typography>
         </Grid>
         <Grid item className={classes.aboutTabSection}>
-          <img src={WebRTCNeedsServersImg}></img>
+          <img src={WebRTCNeedsServersImg} alt="web rtc needs servers"></img>
           <Typography variant="caption" gutterBottom>
             <a href="https://www.html5rocks.com/en/tutorials/webrtc/infrastructure/">Read more about WebRTC Signalling</a>
           </Typography>
@@ -72,10 +72,10 @@ class AboutPigeonRTC2 extends Component {
           </Grid>
           <Grid container direction="row" justify="space-evenly" spacing={16}>
             <Grid item xs={6}>
-              <img src={WebRTCSignallingImg} className={classes.signallingImg}></img>
+              <img src={WebRTCSignallingImg} alt="web rtc signalling" className={classes.signallingImg}></img>
             </Grid>
             <Grid item xs={6}>
-              <img src={PigeonRTCSignallingImg} className={classes.signallingImg}></img>
+              <img src={PigeonRTCSignallingImg} alt="pigeon rtc signalling" className={classes.signallingImg}></img>
             </Grid>
           </Grid>
         </Grid>

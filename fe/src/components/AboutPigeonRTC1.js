@@ -31,7 +31,7 @@ class AboutPigeonRTC1 extends Component {
           <Typography variant="h1">Pigeon RTC</Typography>
         </Grid>
         <Grid item className={classes.aboutTabSection}>
-          <img src={pigeonSvg} className={classes.pigeonSvg}></img>
+          <img src={pigeonSvg} alt="pigeon rtc logo" className={classes.pigeonSvg} title="img credit goes to: https://www.svgrepo.com/svg/275543/dove-pigeon"></img>
         </Grid>
         <Grid item className={classes.aboutTabSection}>
           <Typography variant="h4">
