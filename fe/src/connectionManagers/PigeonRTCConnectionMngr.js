@@ -42,7 +42,7 @@ export default class PigeonRTCConnectionMngr {
     if (this.localMediaStreamPromise === null) {
       this.localMediaStreamPromise = new Promise((resolve, reject) => {
         navigator.getUserMedia(
-          {video: true},
+          {video: true, audio: true},
           (stream) => resolve(stream),
           () => reject(new Error('Failed to get local media stream'))
         );

@@ -14,8 +14,8 @@ import Tab from '@material-ui/core/Tab';
 // web rtc stuff
 // import WebRTCWithServerTab from './tabs/WebRTCWithServerTab';
 import WebRTCWithCarrierPigeonTab from './components/WebRTCWithCarrierPigeonTab';
-import AboutPigeonRTC1 from './components/AboutPigeonRTC1';
-import AboutPigeonRTC2 from './components/AboutPigeonRTC2';
+import AboutPigeonRTC1Tab from './components/AboutPigeonRTC1Tab';
+import AboutPigeonRTC2Tab from './components/AboutPigeonRTC2Tab';
 
 const theme = createMuiTheme({
   palette: {
@@ -61,8 +61,8 @@ class App extends Component {
                 {/* <Tab label="Connect by Server" value={TAB_OPTIONS.SERVER}/> */}
               </Tabs>
             </AppBar>
-            {currentTab === TAB_OPTIONS.ABOUT1 && <AboutPigeonRTC1 onMoreInfoBtnClick={() => this.handleTabChange(TAB_OPTIONS.ABOUT2)}></AboutPigeonRTC1>}
-            {currentTab === TAB_OPTIONS.ABOUT2 && <AboutPigeonRTC2 onConnectBtnClick={() => this.handleTabChange(TAB_OPTIONS.PIGEON)}></AboutPigeonRTC2>}
+            {currentTab === TAB_OPTIONS.ABOUT1 && <AboutPigeonRTC1Tab onMoreInfoBtnClick={() => this.handleTabChange(TAB_OPTIONS.ABOUT2)}></AboutPigeonRTC1Tab>}
+            {currentTab === TAB_OPTIONS.ABOUT2 && <AboutPigeonRTC2Tab onConnectBtnClick={() => this.handleTabChange(TAB_OPTIONS.PIGEON)}></AboutPigeonRTC2Tab>}
             {currentTab === TAB_OPTIONS.PIGEON && <WebRTCWithCarrierPigeonTab></WebRTCWithCarrierPigeonTab>}
             {/* {currentTab === TAB_OPTIONS.SERVER && <WebRTCWithServerTab></WebRTCWithServerTab>} */}
           </div>
