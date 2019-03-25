@@ -13,7 +13,7 @@ import FormLabel from '@material-ui/core/FormLabel';
 import Typography from '@material-ui/core/Typography';
 
 // web rtc stuff
-import WebRTCVideo from '../components/WebRTCVideo';
+import WebRTCVideo from './WebRTCVideo';
 import PigeonRTCConnectionMngr from '../connectionManagers/PigeonRTCConnectionMngr';
 
 const styles = ((theme) => ({

@@ -10,7 +10,7 @@ import Icon from '@material-ui/core/Icon';
 import TextField from '@material-ui/core/TextField';
 
 // web rtc stuff
-import WebRTCVideo from '../components/WebRTCVideo';
+import WebRTCVideo from './WebRTCVideo';
 import WebRTCConnectionManager from '../connectionManagers/WebRTCConnectionManager';
 
 const DEFAULT_SOCKET_URL = 'http://localhost:8080';
