@@ -7,9 +7,9 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 
 // web rtc stuff
-import WebRTCVideo from '../WebRTCVideo/WebRTCVideo';
-import WebRTCControlPanel from '../WebRTCControlPanel/WebRTCControlPanel';
-import WebRTCConnectionManager from '../WebRTCConnectionManager';
+import WebRTCVideo from '../components/WebRTCVideo';
+import WebRTCControlPanel from '../components/WebRTCControlPanel';
+import WebRTCConnectionManager from '../connectionManagers/WebRTCConnectionManager';
 
 const DEFAULT_SOCKET_URL = 'http://localhost:8080';
 

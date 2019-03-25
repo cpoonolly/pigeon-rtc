@@ -11,7 +11,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 
 // web rtc stuff
-import WebRTCWithServerTab from './WebRTCWithServerTab/WebRTCWithServerTab';
+import WebRTCWithServerTab from './tabs/WebRTCWithServerTab';
 
 const theme = createMuiTheme({
   palette: {
