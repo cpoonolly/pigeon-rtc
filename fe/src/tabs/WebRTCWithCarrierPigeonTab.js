@@ -15,6 +15,7 @@ import FormLabel from '@material-ui/core/FormLabel';
 // web rtc stuff
 import WebRTCVideo from '../components/WebRTCVideo';
 import CarrierPigeonRTCConnectionMngr from '../connectionManagers/CarrierPigeonRTCConnectionMngr';
+import { Typography } from '@material-ui/core';
 
 const styles = ((theme) => ({
   root: {
@@ -25,6 +26,9 @@ const styles = ((theme) => ({
   },
   startOrAcceptFormLabel: {
     marginBottom: '20px',
+  },
+  startOrAcceptFormRadioBtns: {
+
   },
   offerAnswerInputContainer: {
     width: '100%',
@@ -140,7 +144,12 @@ class WebRTCWithCarrierPigeonTab extends Component {
     return (
       <FormControl component="fieldset">
         <FormLabel component="legend" className={classes.startOrAcceptFormLabel}>
-          Start or Accept a WebRTC Connection via Carrier Pigeon
+          <Typography variant="h5">
+            Setup a WebRTC connection via Carrier Pigeon
+          </Typography>
+          <Typography variant="subtitle2">
+            (now compatible with smoke signals &amp; messages in a bottle!)
+          </Typography>
         </FormLabel>
         <RadioGroup
           row
