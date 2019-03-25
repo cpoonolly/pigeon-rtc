@@ -1,16 +1,16 @@
 {
   "main.css": "/web_rtc_test/static/css/main.210335cc.chunk.css",
-  "main.js": "/web_rtc_test/static/js/main.83123fed.chunk.js",
-  "main.js.map": "/web_rtc_test/static/js/main.83123fed.chunk.js.map",
+  "main.js": "/web_rtc_test/static/js/main.2651296f.chunk.js",
+  "main.js.map": "/web_rtc_test/static/js/main.2651296f.chunk.js.map",
   "static/css/1.bff4ca5d.chunk.css": "/web_rtc_test/static/css/1.bff4ca5d.chunk.css",
   "static/js/1.8a532eca.chunk.js": "/web_rtc_test/static/js/1.8a532eca.chunk.js",
   "static/js/1.8a532eca.chunk.js.map": "/web_rtc_test/static/js/1.8a532eca.chunk.js.map",
   "runtime~main.js": "/web_rtc_test/static/js/runtime~main.44f661e9.js",
   "runtime~main.js.map": "/web_rtc_test/static/js/runtime~main.44f661e9.js.map",
-  "static/media/index.css": "/web_rtc_test/static/media/roboto-latin-900italic.7b770d6c.woff2",
-  "static/css/1.bff4ca5d.chunk.css.map": "/web_rtc_test/static/css/1.bff4ca5d.chunk.css.map",
+  "static/media/index.css": "/web_rtc_test/static/media/roboto-latin-900italic.bc833e72.woff",
   "static/css/main.210335cc.chunk.css.map": "/web_rtc_test/static/css/main.210335cc.chunk.css.map",
+  "static/css/1.bff4ca5d.chunk.css.map": "/web_rtc_test/static/css/1.bff4ca5d.chunk.css.map",
   "index.html": "/web_rtc_test/index.html",
-  "precache-manifest.4848ddb7eea16d9ae2802189e763661f.js": "/web_rtc_test/precache-manifest.4848ddb7eea16d9ae2802189e763661f.js",
+  "precache-manifest.ed6dcca7209d8f41e6e9daf2f53abe44.js": "/web_rtc_test/precache-manifest.ed6dcca7209d8f41e6e9daf2f53abe44.js",
   "service-worker.js": "/web_rtc_test/service-worker.js"
 }
