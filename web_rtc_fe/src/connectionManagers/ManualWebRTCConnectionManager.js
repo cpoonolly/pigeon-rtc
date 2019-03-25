@@ -1,5 +1,3 @@
-import io from 'socket.io-client';
-
 const ICE_CONFIGURATION = {
   iceServers: [
     {urls: 'stun:stun.l.google.com:19302'}
@@ -53,7 +51,7 @@ export default class WebRTCConnectionManager {
   }
 
   /* Initiate a call */
-  async call() {
+  async createOffer() {
     // add local media stream tracks to rtc connection
     let localMediaStream = await this.getLocalMediaStream();
     localMediaStream.getTracks().forEach((track) => this.rtcConnection.addTrack(track, localMediaStream));

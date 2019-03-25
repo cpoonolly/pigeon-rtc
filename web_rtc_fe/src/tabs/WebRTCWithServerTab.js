@@ -5,6 +5,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import Icon from '@material-ui/core/Icon';
 
 // web rtc stuff
 import WebRTCVideo from '../components/WebRTCVideo';
@@ -20,7 +21,7 @@ const styles = ((theme) => ({
   },
   doublePadded: {
     padding: theme.spacing.unit * 2,
-  },
+  }
 }));
 
 class WebRTCWithServerTab extends Component {
@@ -30,6 +31,13 @@ class WebRTCWithServerTab extends Component {
     this.state = {
       serverUrl: DEFAULT_SOCKET_URL,
       isServerSet: false
+    };
+
+    this.controlPanel = {
+      buttons: [
+        {id: 'call_start', render: () => this.renderCallBtn(), onClick: () => this.handleCallStart()},
+        {id: 'call_end', render: () => this.renderEndCallBtn(), onClick: () => this.handleCallEnd()},
+      ]
     };
 
     this.rtcConnectionMngr = null;
@@ -87,6 +95,14 @@ class WebRTCWithServerTab extends Component {
       .then(() => this.remoteVideoEl.srcObject = this.remoteVideoStream);
   }
 
+  renderCallBtn() {
+    return (<React.Fragment>Call <Icon style={{marginLeft: '15px'}}>call</Icon></React.Fragment>);
+  }
+
+  renderEndCallBtn() {
+    return (<React.Fragment>End Call <Icon style={{marginLeft: '15px'}}>call_end</Icon></React.Fragment>);
+  }
+
   renderSetServerUI() {
     const { classes } = this.props;
 
@@ -122,7 +138,7 @@ class WebRTCWithServerTab extends Component {
         </Grid>
         <Grid container spacing={12} justify="center" className={classes.doublePadded}>
           <Grid item xs={6}>
-            <WebRTCControlPanel handleCallStart={this.handleCallStart} handleCallEnd={this.handleCallEnd}></WebRTCControlPanel>
+            <WebRTCControlPanel controlPanel={this.controlPanel}></WebRTCControlPanel>
           </Grid>
         </Grid>
       </div>

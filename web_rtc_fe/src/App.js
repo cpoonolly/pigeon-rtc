@@ -12,6 +12,7 @@ import Tab from '@material-ui/core/Tab';
 
 // web rtc stuff
 import WebRTCWithServerTab from './tabs/WebRTCWithServerTab';
+import WebRTCManualTab from './tabs/WebRTCManualTab';
 
 const theme = createMuiTheme({
   palette: {
@@ -54,7 +55,7 @@ class App extends Component {
               </Tabs>
             </AppBar>
             {currentTab === TAB_OPTIONS.SERVER && <WebRTCWithServerTab></WebRTCWithServerTab>}
-            {currentTab === TAB_OPTIONS.MANUAL && <h1>Manual Mode!</h1>}
+            {currentTab === TAB_OPTIONS.MANUAL && <WebRTCManualTab></WebRTCManualTab>}
           </div>
         </MuiThemeProvider>
       </CssBaseline>

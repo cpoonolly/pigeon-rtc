@@ -5,7 +5,6 @@ import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import Icon from '@material-ui/core/Icon';
 import Grid from '@material-ui/core/Grid';
 
 const styles = ((theme) => ({
@@ -24,22 +23,19 @@ const styles = ((theme) => ({
 
 class WebRTCControlPanel extends Component {
   render() {
-    const { classes } = this.props;
+    const { classes, controlPanel } = this.props;
 
     return (
       <Card>
         <CardContent>  
-          <Grid container spacing={12} justify="space-evenly" alignItems="center">
-            <Grid item xs={4} className={classes.controlPanelBtnContainer}>
-              <Button variant="contained" color="primary" className={classes.controlPanelBtn} onClick={() => this.props.handleCallStart()}>
-                Call <Icon className={classes.controlPanelIcon}>call</Icon>
-              </Button>
-            </Grid>
-            <Grid item xs={4} className={classes.controlPanelBtnContainer}>
-              <Button variant="contained" color="primary" className={classes.controlPanelBtn} onClick={() => this.props.handleCallEnd()}>
-                End Call <Icon className={classes.controlPanelIcon}>call_end</Icon>
-              </Button>
-            </Grid>
+          <Grid container spacing={controlPanel.buttons.length * 6} justify="space-evenly" alignItems="center">
+            {controlPanel.buttons.map((button) => (
+              <Grid key={button.id} item xs={4} className={classes.controlPanelBtnContainer}>
+                <Button variant="contained" color="primary" className={classes.controlPanelBtn} onClick={() => button.onClick()}>
+                  {button.render()}
+                </Button>
+              </Grid>
+            ))}
           </Grid>
         </CardContent>
       </Card>
