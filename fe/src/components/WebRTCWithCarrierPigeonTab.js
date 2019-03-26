@@ -245,7 +245,7 @@ class WebRTCWithCarrierPigeonTab extends Component {
         onChange={(event) => this.handleRemoteConnectionData(event.target.value)}
         value={remoteConnectionData}
         multiline
-        rows="1"
+        rows="2"
         margin="normal"
         variant="outlined"
         className={classes.offerAnswerInput}
@@ -258,7 +258,7 @@ class WebRTCWithCarrierPigeonTab extends Component {
         disabled
         value={localConnectionData}
         multiline
-        rows="1"
+        rows="2"
         margin="normal"
         variant="outlined"
         className={classes.offerAnswerInput}
@@ -268,11 +268,11 @@ class WebRTCWithCarrierPigeonTab extends Component {
 
     return (
       <Grid container spacing={16} justify="space-evenly">
-        <Grid item xs={8}>
+        <Grid item xs={6}>
           {startOrAccept === 'start' && localConnectionTextField}
           {startOrAccept === 'accept' && remoteConnectionTextField}
         </Grid>
-        <Grid item xs={8}>
+        <Grid item xs={6}>
           {startOrAccept === 'start' && remoteConnectionTextField}
           {startOrAccept === 'accept' && localConnectionData && localConnectionTextField}
         </Grid>
@@ -285,6 +285,7 @@ class WebRTCWithCarrierPigeonTab extends Component {
       <Snackbar
         anchorOrigin={{vertical: 'bottom', horizontal: 'left'}}
         open={this.state.showTextCopiedSnackbar}
+        onClose={() => this.setState({showTextCopiedSnackbar: false})}
         autoHideDuration={1000}
         ContentProps={{'aria-describedby': 'message-text-copied-id'}}
         message={<span id="message-text-copied-id">Text copied! Now send it to your friend!</span>}
