@@ -15,7 +15,10 @@ import Snackbar from '@material-ui/core/Snackbar';
 
 // web rtc stuff
 import WebRTCVideo from './WebRTCVideo';
+import LocalConnectionTextField from './LocalConnectionTextField';
+import RemoteConnectionTextField from './RemoteConnectionTextField';
 import PigeonRTCConnectionMngr from '../connectionManagers/PigeonRTCConnectionMngr';
+import Disclaimer from './Disclaimer';
 
 const styles = ((theme) => ({
   root: {
@@ -34,12 +37,6 @@ const styles = ((theme) => ({
     width: '100%',
     marginBottom: '30px',
   },
-  offerAnswerInput: {
-    width: '100%'
-  },
-  disclaimerContainer: {
-    marginTop: '50px',
-  },
 }));
 
 class WebRTCWithCarrierPigeonTab extends Component {
@@ -50,8 +47,7 @@ class WebRTCWithCarrierPigeonTab extends Component {
       startOrAccept: null,
       isConnected: false,
       localConnectionData: '',
-      remoteConnectionData: '',
-      showTextCopiedSnackbar: false,
+      remoteConnectionData: ''
     };
 
     this.rtcConnectionMngr = new PigeonRTCConnectionMngr();
@@ -119,20 +115,6 @@ class WebRTCWithCarrierPigeonTab extends Component {
     }
   }
 
-  handleLocalConnectionTextFieldClick(event) {
-    // Jesus... this is how we need to access the clipboard?
-    // https://stackoverflow.com/a/30810322
-    // Should probably be using clipboard aAPI instead but i'm a little unclear on it's level of support...
-    let tempTextField = document.createElement('textarea');
-    tempTextField.innerText = this.state.localConnectionData;
-    document.body.appendChild(tempTextField);
-    tempTextField.select();
-    document.execCommand('copy');
-    tempTextField.remove();
-
-    this.setState({showTextCopiedSnackbar: true});
-  }
-
   renderSetupConnectionUI() {
     const { startOrAccept } = this.state;
     const { classes } = this.props;
@@ -149,7 +131,7 @@ class WebRTCWithCarrierPigeonTab extends Component {
           {startOrAccept && this.renderConnectBtn()}
         </Grid>
         <Grid item>
-          {startOrAccept && this.renderDisclaimer()}
+          {startOrAccept && <Disclaimer></Disclaimer>}
         </Grid>
       </Grid>
     )
@@ -196,21 +178,6 @@ class WebRTCWithCarrierPigeonTab extends Component {
     );
   }
 
-  // Copy Pasta (sue me..)
-  renderDisclaimer() {
-    const { classes } = this.props;
-
-    return (
-      <div className={classes.disclaimerContainer}>
-        <Typography variant="overline">Disclaimer:</Typography>
-        <Typography variant="caption" gutterBottom>
-          Because each peer only sends one pigeon each, PigeonRTC does not support <a href="http://tools.ietf.org/html/draft-ietf-rtcweb-jsep-03#section-3.4.1">ICE Candidate Trickling</a>.<br/>
-          For this and other reasons (namely my crippling inadequacies as an engineer/human being), there's a high likelihood of crappy/failing connections.
-        </Typography>
-      </div>
-    );
-  }
-
   renderConnectBtn() {
     const { startOrAccept, localConnectionData, remoteConnectionData, isConnected } = this.state;
     const { classes } = this.props;
@@ -240,30 +207,16 @@ class WebRTCWithCarrierPigeonTab extends Component {
     const { classes } = this.props;
 
     let remoteConnectionTextField = (
-      <TextField
-        label={'Get this from your friend!'}
-        onChange={(event) => this.handleRemoteConnectionData(event.target.value)}
-        value={remoteConnectionData}
-        multiline
-        rows="2"
-        margin="normal"
-        variant="outlined"
-        className={classes.offerAnswerInput}
-      />
+      <RemoteConnectionTextField
+        remoteConnectionData={remoteConnectionData}
+        onChange={(newVal) => this.handleRemoteConnectionData(newVal)}
+      ></RemoteConnectionTextField>
     );
 
     let localConnectionTextField = (
-      <TextField
-        label={'Send this to your friend!'}
-        disabled
-        value={localConnectionData}
-        multiline
-        rows="2"
-        margin="normal"
-        variant="outlined"
-        className={classes.offerAnswerInput}
-        onClick={(event) => this.handleLocalConnectionTextFieldClick(event)}
-      />
+      <LocalConnectionTextField 
+        localConnectionData={localConnectionData}
+      ></LocalConnectionTextField>
     );
 
     return (
@@ -278,19 +231,6 @@ class WebRTCWithCarrierPigeonTab extends Component {
         </Grid>
       </Grid>
     );
-  }
-
-  renderTextCopiedSnackbar() {
-    return (
-      <Snackbar
-        anchorOrigin={{vertical: 'bottom', horizontal: 'left'}}
-        open={this.state.showTextCopiedSnackbar}
-        onClose={() => this.setState({showTextCopiedSnackbar: false})}
-        autoHideDuration={1000}
-        ContentProps={{'aria-describedby': 'message-text-copied-id'}}
-        message={<span id="message-text-copied-id">Text copied! Now send it to your friend!</span>}
-      />
-    )
   }
 
   renderVideoChatUI() {
@@ -315,7 +255,6 @@ class WebRTCWithCarrierPigeonTab extends Component {
       <div className={classes.root}>
         {this.renderVideoChatUI()}
         {this.renderSetupConnectionUI()}
-        {this.renderTextCopiedSnackbar()}
       </div>
     );
   }

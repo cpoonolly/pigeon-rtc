@@ -13,6 +13,9 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
 
+// WebRTC stuff
+import Disclaimer from './Disclaimer';
+
 const styles = ((theme) => ({
   howItWorksTab: {
     paddingTop: '50px',
@@ -122,13 +125,7 @@ class HowItWorksTab extends Component {
         </div>
 
 
-        <div className={classes.disclaimerContainer}>
-          <Typography variant="overline">Disclaimer:</Typography>
-          <Typography variant="caption" gutterBottom>
-            Because each peer only sends one pigeon each, PigeonRTC does not support <a href="http://tools.ietf.org/html/draft-ietf-rtcweb-jsep-03#section-3.4.1">ICE Candidate Trickling</a>.<br/>
-            For this and other reasons (namely my crippling inadequacies as an engineer/human being), there's a high likelihood of crappy/failing connections.
-          </Typography>
-        </div>
+        <Disclaimer></Disclaimer>
 
         <div className={classes.continueButtonsContainer}>
           <Button color="primary" className={classes.continueButton} onClick={this.handleThisIsStupidBtnClick}>
