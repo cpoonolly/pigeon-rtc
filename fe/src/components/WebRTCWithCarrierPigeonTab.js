@@ -21,8 +21,11 @@ const styles = ((theme) => ({
   root: {
     padding: '20px',
   },
+  videoChatSection: {
+    marginBottom: '30px',
+  },
   videoChatContainer: {
-    paddingBottom: '30px',
+    minWidth: `${WebRTCVideo.MIN_WIDTH + 50}px`,
   },
   startOrAcceptFormLabel: {
     marginBottom: '20px',
@@ -34,9 +37,6 @@ const styles = ((theme) => ({
   offerAnswerInput: {
     width: '100%'
   },
-  doublePadded: {
-    padding: theme.spacing.unit * 2,
-  },  
   disclaimerContainer: {
     marginTop: '50px',
   },
@@ -267,12 +267,12 @@ class WebRTCWithCarrierPigeonTab extends Component {
     );
 
     return (
-      <Grid container spacing={12} justify="space-evenly">
-        <Grid item xs={4}>
+      <Grid container spacing={16} justify="space-evenly">
+        <Grid item xs={8}>
           {startOrAccept === 'start' && localConnectionTextField}
           {startOrAccept === 'accept' && remoteConnectionTextField}
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={8}>
           {startOrAccept === 'start' && remoteConnectionTextField}
           {startOrAccept === 'accept' && localConnectionData && localConnectionTextField}
         </Grid>
@@ -296,11 +296,11 @@ class WebRTCWithCarrierPigeonTab extends Component {
     const { classes } = this.props;
 
     return (
-      <Grid container spacing={12} justify="center" alignItems="stretch" className={classes.videoChatContainer}>
-        <Grid item xs={6} className={classes.doublePadded}>
+      <Grid container spacing={16} direction="row" justify="center" className={classes.videoChatSection}>
+        <Grid item xs={6} className={classes.videoChatContainer}>
           <WebRTCVideo videoName="Local" videoRef={this.setLocalVideoEl} muted={true}/>
         </Grid>
-        <Grid item xs={6} className={classes.doublePadded}>
+        <Grid item xs={6} className={classes.videoChatContainer}>
           <WebRTCVideo videoName="Remote" videoRef={this.setRemoteVideoEl}/>
         </Grid>
       </Grid>
