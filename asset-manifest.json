@@ -1,7 +1,7 @@
 {
   "main.css": "/pigeon-rtc/static/css/main.7ee16424.chunk.css",
-  "main.js": "/pigeon-rtc/static/js/main.0af3f02b.chunk.js",
-  "main.js.map": "/pigeon-rtc/static/js/main.0af3f02b.chunk.js.map",
+  "main.js": "/pigeon-rtc/static/js/main.9f675e8a.chunk.js",
+  "main.js.map": "/pigeon-rtc/static/js/main.9f675e8a.chunk.js.map",
   "static/css/1.5df92825.chunk.css": "/pigeon-rtc/static/css/1.5df92825.chunk.css",
   "static/js/1.14517c27.chunk.js": "/pigeon-rtc/static/js/1.14517c27.chunk.js",
   "static/js/1.14517c27.chunk.js.map": "/pigeon-rtc/static/js/1.14517c27.chunk.js.map",
@@ -19,6 +19,6 @@
   "static/css/1.5df92825.chunk.css.map": "/pigeon-rtc/static/css/1.5df92825.chunk.css.map",
   "static/css/main.7ee16424.chunk.css.map": "/pigeon-rtc/static/css/main.7ee16424.chunk.css.map",
   "index.html": "/pigeon-rtc/index.html",
-  "precache-manifest.3bdbba34c58ff748f1c5e24291060217.js": "/pigeon-rtc/precache-manifest.3bdbba34c58ff748f1c5e24291060217.js",
+  "precache-manifest.46d4f8cb499057bc4fdbeba1b0a54600.js": "/pigeon-rtc/precache-manifest.46d4f8cb499057bc4fdbeba1b0a54600.js",
   "service-worker.js": "/pigeon-rtc/service-worker.js"
 }
