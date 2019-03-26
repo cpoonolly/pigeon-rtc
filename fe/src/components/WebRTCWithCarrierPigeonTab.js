@@ -36,6 +36,9 @@ const styles = ((theme) => ({
   doublePadded: {
     padding: theme.spacing.unit * 2,
   },
+  disclaimerContainer: {
+    marginTop: '50px',
+  },
 }));
 
 class WebRTCWithCarrierPigeonTab extends Component {
@@ -129,6 +132,9 @@ class WebRTCWithCarrierPigeonTab extends Component {
         <Grid item>
           {startOrAccept && this.renderConnectBtn()}
         </Grid>
+        <Grid item>
+          {startOrAccept && this.renderDisclaimer()}
+        </Grid>
       </Grid>
     )
   }
@@ -171,6 +177,21 @@ class WebRTCWithCarrierPigeonTab extends Component {
           />
         </RadioGroup>
       </FormControl>
+    );
+  }
+
+  // Copy Pasta (sue me..)
+  renderDisclaimer() {
+    const { classes } = this.props;
+
+    return (
+      <div className={classes.disclaimerContainer}>
+        <Typography variant="overline">Disclaimer:</Typography>
+        <Typography variant="caption" gutterBottom>
+          Because each peer only sends one pigeon each, PigeonRTC does not support <a href="http://tools.ietf.org/html/draft-ietf-rtcweb-jsep-03#section-3.4.1">ICE Candidate Trickling</a>.<br/>
+          Because of this and other reasons (namely my crippling inadequacies as an engineer/human being), there's a high likelihood of crappy/failing connections.
+        </Typography>
+      </div>
     );
   }
 

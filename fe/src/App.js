@@ -66,7 +66,7 @@ class App extends Component {
             </AppBar>
             {currentTab === TAB_OPTIONS.ABOUT1 && <AboutPigeonRTC1Tab onMoreInfoBtnClick={() => this.handleTabChange(TAB_OPTIONS.ABOUT2)}></AboutPigeonRTC1Tab>}
             {currentTab === TAB_OPTIONS.ABOUT2 && <AboutPigeonRTC2Tab onWtfBtnClick={() => this.handleTabChange(TAB_OPTIONS.ABOUT3)}></AboutPigeonRTC2Tab>}
-            {currentTab === TAB_OPTIONS.ABOUT3 && <HowItWorksTab onImSoConfusedBtnClick={() => this.handleTabChange(TAB_OPTIONS.PIGEON)}></HowItWorksTab>}
+            {currentTab === TAB_OPTIONS.ABOUT3 && <HowItWorksTab onConnectBtnClick={() => this.handleTabChange(TAB_OPTIONS.PIGEON)}></HowItWorksTab>}
             {currentTab === TAB_OPTIONS.PIGEON && <WebRTCWithCarrierPigeonTab></WebRTCWithCarrierPigeonTab>}
             {/* {currentTab === TAB_OPTIONS.SERVER && <WebRTCWithServerTab></WebRTCWithServerTab>} */}
           </div>

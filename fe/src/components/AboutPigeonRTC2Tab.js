@@ -13,6 +13,7 @@ import Button from '@material-ui/core/Button';
 const styles = ((theme) => ({
   aboutTab: {
     paddingTop: '100px',
+    paddingBottom: '100px',
   },
   aboutTabSection: {
     marginBottom: '50px',

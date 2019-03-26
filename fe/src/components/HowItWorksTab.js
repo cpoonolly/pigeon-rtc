@@ -10,10 +10,13 @@ import imgPigeon from '../imgs/pigeon.svg';
 // material-ui
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import Snackbar from '@material-ui/core/Snackbar';
 
 const styles = ((theme) => ({
   howItWorksTab: {
-    paddingTop: '100px',
+    paddingTop: '50px',
+    paddingBottom: '50px',
   },
   howItWorksTitle: {
     marginBottom: '50px',
@@ -32,16 +35,43 @@ const styles = ((theme) => ({
     maxWidth: '100%',
     width: '50px',
     transform: 'scaleX(-1)',
+  },
+  disclaimerContainer: {
+    marginTop: '50px',
+  },
+  continueButtonsContainer: {
+    marginTop: '50px',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
+  continueButton: {
+    marginLeft: '10px',
+    marginRight: '10px',
   }
 }));
 
 class HowItWorksTab extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      showNoYoureStupidSnackbar: false
+    };
+
+    this.handleThisIsStupidBtnClick = this.handleThisIsStupidBtnClick.bind(this);
+  }
+
+  handleThisIsStupidBtnClick() {
+    this.setState({showNoYoureStupidSnackbar: true});
+  }
+
   render() {
     const { classes } = this.props;
 
   
     return (
-      <div class={classes.howItWorksTab}>
+      <div className={classes.howItWorksTab}>
         <div className={classes.howItWorksTitle}>
           <Typography variant="h4">How it works</Typography>
           <Typography variant="caption">Just 9 easy steps!</Typography>
@@ -81,13 +111,41 @@ class HowItWorksTab extends Component {
           <Typography variant="h6" gutterBottom>Step 6: Friend sends the copied text back to you (via pigeon).</Typography>
           <img src={imgPigeon} alt="Step 6" className={classes.pigeonReversedImg}></img>
         </div>
+
         <div className={classes.stepContainer}>
           <Typography variant="h6" gutterBottom>Step 7: Paste your friends message in "Get this from your friend" &amp; click "Connect".</Typography>
           <img src={imgHowItWorksStep7} alt="Step 7" className={classes.stepImg}></img>   
         </div>
+
         <div className={classes.stepContainer}>
           <Typography variant="h6" gutterBottom>Step 8: Profit???</Typography>
         </div>
+
+
+        <div className={classes.disclaimerContainer}>
+          <Typography variant="overline">Disclaimer:</Typography>
+          <Typography variant="caption" gutterBottom>
+            Because each peer only sends one pigeon each, PigeonRTC does not support <a href="http://tools.ietf.org/html/draft-ietf-rtcweb-jsep-03#section-3.4.1">ICE Candidate Trickling</a>.<br/>
+            Because of this and other reasons (namely my crippling inadequacies as an engineer/human being), there's a high likelihood of crappy/failing connections.
+          </Typography>
+        </div>
+
+        <div className={classes.continueButtonsContainer}>
+          <Button color="primary" className={classes.continueButton} onClick={this.handleThisIsStupidBtnClick}>
+            This is Stupid...
+          </Button>
+          <Button variant="contained" color="primary" className={classes.continueButton} onClick={this.props.onConnectBtnClick}>
+            Coo-Coo-nnect!
+          </Button>
+        </div>
+        <Snackbar
+          anchorOrigin={{vertical: 'bottom', horizontal: 'left'}}
+          open={this.state.showNoYoureStupidSnackbar}
+          autoHideDuration={1000}
+          onClose={this.handleClose}
+          ContentProps={{'aria-describedby': 'message-no-youre-stupid-id'}}
+          message={<span id="message-no-youre-stupid-id">You're Stupid..</span>}
+        />
       </div>
       
     );
