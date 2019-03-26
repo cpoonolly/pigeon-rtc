@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import pigeonSvg from '../imgs/pigeon.svg'; 
+import imgPigeon from '../imgs/pigeon.svg'; 
 
 // material-ui
 import { withStyles } from '@material-ui/core/styles';
@@ -10,7 +10,7 @@ import Button from '@material-ui/core/Button';
 // TODO - This and all other px literals should probably be replaced with spacing units?
 const styles = ((theme) => ({
   aboutTab: {
-    padding: '100px',
+    paddingTop: '100px',
   },
   aboutTabSection: {
     marginBottom: '50px',
@@ -31,7 +31,7 @@ class AboutPigeonRTC1 extends Component {
           <Typography variant="h1">Pigeon RTC</Typography>
         </Grid>
         <Grid item className={classes.aboutTabSection}>
-          <img src={pigeonSvg} alt="pigeon rtc logo" className={classes.pigeonSvg} title="img credit goes to: https://www.svgrepo.com/svg/275543/dove-pigeon"></img>
+          <img src={imgPigeon} alt="pigeon rtc logo" className={classes.pigeonSvg} title="img credit goes to: https://www.svgrepo.com/svg/275543/dove-pigeon"></img>
         </Grid>
         <Grid item className={classes.aboutTabSection}>
           <Typography variant="h4">

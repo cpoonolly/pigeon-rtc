@@ -248,7 +248,7 @@ class WebRTCWithCarrierPigeonTab extends Component {
     return (
       <Grid container spacing={12} justify="center" alignItems="stretch" className={classes.videoChatContainer}>
         <Grid item xs={6} className={classes.doublePadded}>
-          <WebRTCVideo videoName="Local" videoRef={this.setLocalVideoEl}/>
+          <WebRTCVideo videoName="Local" videoRef={this.setLocalVideoEl} muted={true}/>
         </Grid>
         <Grid item xs={6} className={classes.doublePadded}>
           <WebRTCVideo videoName="Remote" videoRef={this.setRemoteVideoEl}/>

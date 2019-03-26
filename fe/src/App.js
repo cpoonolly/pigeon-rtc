@@ -16,6 +16,7 @@ import Tab from '@material-ui/core/Tab';
 import WebRTCWithCarrierPigeonTab from './components/WebRTCWithCarrierPigeonTab';
 import AboutPigeonRTC1Tab from './components/AboutPigeonRTC1Tab';
 import AboutPigeonRTC2Tab from './components/AboutPigeonRTC2Tab';
+import HowItWorksTab from './components/HowItWorksTab';
 
 const theme = createMuiTheme({
   palette: {
@@ -29,6 +30,7 @@ const TAB_OPTIONS = Object.freeze({
   PIGEON: 'pigeon',
   ABOUT1: 'about1',
   ABOUT2: 'about2',
+  ABOUT3: 'about3',
 });
 
 class App extends Component {
@@ -57,12 +59,14 @@ class App extends Component {
               <Tabs value={currentTab} onChange={(event, value) => this.handleTabChange(value)}>
                 <Tab label="What is it?" value={TAB_OPTIONS.ABOUT1}/>
                 <Tab label="...Ummm What?" value={TAB_OPTIONS.ABOUT2}/>
+                <Tab label="How it works" value={TAB_OPTIONS.ABOUT3}/>
                 <Tab label="Coo-Coo-nnect!" value={TAB_OPTIONS.PIGEON}/>
                 {/* <Tab label="Connect by Server" value={TAB_OPTIONS.SERVER}/> */}
               </Tabs>
             </AppBar>
             {currentTab === TAB_OPTIONS.ABOUT1 && <AboutPigeonRTC1Tab onMoreInfoBtnClick={() => this.handleTabChange(TAB_OPTIONS.ABOUT2)}></AboutPigeonRTC1Tab>}
-            {currentTab === TAB_OPTIONS.ABOUT2 && <AboutPigeonRTC2Tab onConnectBtnClick={() => this.handleTabChange(TAB_OPTIONS.PIGEON)}></AboutPigeonRTC2Tab>}
+            {currentTab === TAB_OPTIONS.ABOUT2 && <AboutPigeonRTC2Tab onWtfBtnClick={() => this.handleTabChange(TAB_OPTIONS.ABOUT3)}></AboutPigeonRTC2Tab>}
+            {currentTab === TAB_OPTIONS.ABOUT3 && <HowItWorksTab onImSoConfusedBtnClick={() => this.handleTabChange(TAB_OPTIONS.PIGEON)}></HowItWorksTab>}
             {currentTab === TAB_OPTIONS.PIGEON && <WebRTCWithCarrierPigeonTab></WebRTCWithCarrierPigeonTab>}
             {/* {currentTab === TAB_OPTIONS.SERVER && <WebRTCWithServerTab></WebRTCWithServerTab>} */}
           </div>
