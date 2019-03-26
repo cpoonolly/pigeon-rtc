@@ -11,6 +11,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import Typography from '@material-ui/core/Typography';
+import Snackbar from '@material-ui/core/Snackbar';
 
 // web rtc stuff
 import WebRTCVideo from './WebRTCVideo';
@@ -50,6 +51,7 @@ class WebRTCWithCarrierPigeonTab extends Component {
       isConnected: false,
       localConnectionData: '',
       remoteConnectionData: '',
+      showTextCopiedSnackbar: false,
     };
 
     this.rtcConnectionMngr = new PigeonRTCConnectionMngr();
@@ -115,6 +117,20 @@ class WebRTCWithCarrierPigeonTab extends Component {
     } catch (error) {
       console.error(error);
     }
+  }
+
+  handleLocalConnectionTextFieldClick(event) {
+    // Jesus... this is how we need to access the clipboard?
+    // https://stackoverflow.com/a/30810322
+    // Should probably be using clipboard aAPI instead but i'm a little unclear on it's level of support...
+    let tempTextField = document.createElement('textarea');
+    tempTextField.innerText = this.state.localConnectionData;
+    document.body.appendChild(tempTextField);
+    tempTextField.select();
+    document.execCommand('copy');
+    tempTextField.remove();
+
+    this.setState({showTextCopiedSnackbar: true});
   }
 
   renderSetupConnectionUI() {
@@ -246,6 +262,7 @@ class WebRTCWithCarrierPigeonTab extends Component {
         margin="normal"
         variant="outlined"
         className={classes.offerAnswerInput}
+        onClick={(event) => this.handleLocalConnectionTextFieldClick(event)}
       />
     );
 
@@ -261,6 +278,18 @@ class WebRTCWithCarrierPigeonTab extends Component {
         </Grid>
       </Grid>
     );
+  }
+
+  renderTextCopiedSnackbar() {
+    return (
+      <Snackbar
+        anchorOrigin={{vertical: 'bottom', horizontal: 'left'}}
+        open={this.state.showTextCopiedSnackbar}
+        autoHideDuration={1000}
+        ContentProps={{'aria-describedby': 'message-text-copied-id'}}
+        message={<span id="message-text-copied-id">Text copied! Now send it to your friend!</span>}
+      />
+    )
   }
 
   renderVideoChatUI() {
@@ -285,6 +314,7 @@ class WebRTCWithCarrierPigeonTab extends Component {
       <div className={classes.root}>
         {this.renderVideoChatUI()}
         {this.renderSetupConnectionUI()}
+        {this.renderTextCopiedSnackbar()}
       </div>
     );
   }

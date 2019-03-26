@@ -142,7 +142,6 @@ class HowItWorksTab extends Component {
           anchorOrigin={{vertical: 'bottom', horizontal: 'left'}}
           open={this.state.showNoYoureStupidSnackbar}
           autoHideDuration={1000}
-          onClose={this.handleClose}
           ContentProps={{'aria-describedby': 'message-no-youre-stupid-id'}}
           message={<span id="message-no-youre-stupid-id">You're Stupid..</span>}
         />
