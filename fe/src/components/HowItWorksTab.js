@@ -113,7 +113,7 @@ class HowItWorksTab extends Component {
         </div>
 
         <div className={classes.stepContainer}>
-          <Typography variant="h6" gutterBottom>Step 7: Paste your friends message in "Get this from your friend" &amp; click "Connect".</Typography>
+          <Typography variant="h6" gutterBottom>Step 7: You paste your friends message in "Get this from your friend" &amp; click "Connect".</Typography>
           <img src={imgHowItWorksStep7} alt="Step 7" className={classes.stepImg}></img>   
         </div>
 
