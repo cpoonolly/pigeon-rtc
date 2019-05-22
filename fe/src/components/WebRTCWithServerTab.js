@@ -13,7 +13,10 @@ import TextField from '@material-ui/core/TextField';
 import WebRTCVideo from './WebRTCVideo';
 import WebRTCConnectionManager from '../connectionManagers/WebRTCConnectionManager';
 
-const DEFAULT_SOCKET_URL = 'http://localhost:8080';
+// uuid
+import uuid from 'uuid/v4';
+
+const DEFAULT_SOCKET_URL = 'http://api.cpoonolly.com:3001';
 
 const styles = ((theme) => ({
   uiContainer: {
@@ -42,7 +45,8 @@ class WebRTCWithServerTab extends Component {
 
     this.state = {
       serverUrl: DEFAULT_SOCKET_URL,
-      isServerSet: false
+      roomUuid: uuid(),
+      isConnected: false
     };
 
     this.rtcConnectionMngr = null;
@@ -57,7 +61,7 @@ class WebRTCWithServerTab extends Component {
     this.handleCallStart = this.handleCallStart.bind(this);
     this.handleCallEnd = this.handleCallEnd.bind(this);
     this.handleServerUrlChange = this.handleServerUrlChange.bind(this);
-    this.handleSetServerClick = this.handleSetServerClick.bind(this);
+    this.handleConnectClick = this.handleConnectClick.bind(this);
 
     this.setLocalVideoEl = this.setLocalVideoEl.bind(this);
     this.setRemoteVideoEl = this.setRemoteVideoEl.bind(this);
@@ -67,9 +71,13 @@ class WebRTCWithServerTab extends Component {
     this.setState({serverUrl: newText});
   }
 
-  handleSetServerClick() {
-    this.rtcConnectionMngr = new WebRTCConnectionManager(this.state.serverUrl);
-    this.setState({isServerSet: true});
+  handleRoomUuidChange(newText) {
+    this.setState({roomUuid: newText});
+  }
+
+  handleConnectClick() {
+    this.rtcConnectionMngr = new WebRTCConnectionManager(this.state.serverUrl, this.state.roomUuid);
+    this.setState({isConnected: true});
   }
 
   handleCallStart() {
@@ -100,7 +108,7 @@ class WebRTCWithServerTab extends Component {
       .then(() => this.remoteVideoEl.srcObject = this.remoteVideoStream);
   }
 
-  renderSetServerUI() {
+  renderSetConnectionUI() {
     const { classes } = this.props;
 
     return (
@@ -113,8 +121,15 @@ class WebRTCWithServerTab extends Component {
             onChange={(event) => this.handleServerUrlChange(event.target.value)}
           />
         </Grid>
-        <Grid item xs={4} className={classes.doublePadded}>
-          <Button variant="contained" color="primary" onClick={this.handleSetServerClick}>Connect</Button>
+        <Grid item xs={2}>
+          <TextField
+            label="Room ID"
+            value={this.state.roomUuid}
+            onChange={(event) => this.handleRoomUuidChange(event.target.value)}
+          />
+        </Grid>
+        <Grid item xs={2} className={classes.doublePadded}>
+          <Button variant="contained" color="primary" onClick={this.handleConnectClick}>Connect</Button>
         </Grid>
       </Grid>
     );
@@ -166,7 +181,7 @@ class WebRTCWithServerTab extends Component {
   }
 
   render() {
-    return (!this.state.isServerSet ? this.renderSetServerUI() : this.renderVideoChatUI());
+    return (!this.state.isConnected ? this.renderSetConnectionUI() : this.renderVideoChatUI());
   }
 }
 
