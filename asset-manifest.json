@@ -1,13 +1,13 @@
 {
   "main.css": "/pigeon-rtc/static/css/main.3d43dbd7.chunk.css",
-  "main.js": "/pigeon-rtc/static/js/main.d2599cdf.chunk.js",
-  "main.js.map": "/pigeon-rtc/static/js/main.d2599cdf.chunk.js.map",
+  "main.js": "/pigeon-rtc/static/js/main.b2120a85.chunk.js",
+  "main.js.map": "/pigeon-rtc/static/js/main.b2120a85.chunk.js.map",
   "static/css/1.5671ce68.chunk.css": "/pigeon-rtc/static/css/1.5671ce68.chunk.css",
   "static/js/1.a6719689.chunk.js": "/pigeon-rtc/static/js/1.a6719689.chunk.js",
   "static/js/1.a6719689.chunk.js.map": "/pigeon-rtc/static/js/1.a6719689.chunk.js.map",
   "runtime~main.js": "/pigeon-rtc/static/js/runtime~main.650f10aa.js",
   "runtime~main.js.map": "/pigeon-rtc/static/js/runtime~main.650f10aa.js.map",
-  "static/media/index.css": "/pigeon-rtc/static/media/roboto-latin-900italic.bc833e72.woff",
+  "static/media/index.css": "/pigeon-rtc/static/media/roboto-latin-900italic.7b770d6c.woff2",
   "static/media/pigeon.svg": "/pigeon-rtc/static/media/pigeon.8dfa22b7.svg",
   "static/media/WebRTC_signalling.png": "/pigeon-rtc/static/media/WebRTC_signalling.04b3f57d.png",
   "static/media/WebRTC_needs_servers.png": "/pigeon-rtc/static/media/WebRTC_needs_servers.18a98a74.png",
@@ -16,9 +16,9 @@
   "static/media/howItWorks_step5.png": "/pigeon-rtc/static/media/howItWorks_step5.981b6210.png",
   "static/media/howItWorks_step7.png": "/pigeon-rtc/static/media/howItWorks_step7.125a9eea.png",
   "static/media/PigeonRTC_signalling.png": "/pigeon-rtc/static/media/PigeonRTC_signalling.8ef6af10.png",
-  "static/css/1.5671ce68.chunk.css.map": "/pigeon-rtc/static/css/1.5671ce68.chunk.css.map",
   "static/css/main.3d43dbd7.chunk.css.map": "/pigeon-rtc/static/css/main.3d43dbd7.chunk.css.map",
+  "static/css/1.5671ce68.chunk.css.map": "/pigeon-rtc/static/css/1.5671ce68.chunk.css.map",
   "index.html": "/pigeon-rtc/index.html",
-  "precache-manifest.ed88e8928f9df7bca459a47e0196e386.js": "/pigeon-rtc/precache-manifest.ed88e8928f9df7bca459a47e0196e386.js",
+  "precache-manifest.eb8b0a614bd8d8855fa89c83ad1cca02.js": "/pigeon-rtc/precache-manifest.eb8b0a614bd8d8855fa89c83ad1cca02.js",
   "service-worker.js": "/pigeon-rtc/service-worker.js"
 }
