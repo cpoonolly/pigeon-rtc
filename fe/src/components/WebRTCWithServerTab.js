@@ -16,7 +16,7 @@ import WebRTCConnectionManager from '../connectionManagers/WebRTCConnectionManag
 // uuid
 import uuid from 'uuid/v4';
 
-const DEFAULT_SOCKET_URL = 'http://api.cpoonolly.com:3001';
+const DEFAULT_SOCKET_URL = 'https://api.cpoonolly.com:3001';
 
 const styles = ((theme) => ({
   uiContainer: {
