@@ -12,7 +12,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 
 // web rtc stuff
-// import WebRTCWithServerTab from './tabs/WebRTCWithServerTab';
+import WebRTCWithServerTab from './components/WebRTCWithServerTab';
 import WebRTCWithCarrierPigeonTab from './components/WebRTCWithCarrierPigeonTab';
 import AboutPigeonRTC1Tab from './components/AboutPigeonRTC1Tab';
 import AboutPigeonRTC2Tab from './components/AboutPigeonRTC2Tab';
@@ -26,7 +26,7 @@ const theme = createMuiTheme({
 });
 
 const TAB_OPTIONS = Object.freeze({
-  // SERVER: 'server',
+  SERVER: 'server',
   PIGEON: 'pigeon',
   ABOUT1: 'about1',
   ABOUT2: 'about2',
@@ -61,14 +61,14 @@ class App extends Component {
                 <Tab label="...Ummm What?" value={TAB_OPTIONS.ABOUT2}/>
                 <Tab label="How it works" value={TAB_OPTIONS.ABOUT3}/>
                 <Tab label="Coo-Coo-nnect!" value={TAB_OPTIONS.PIGEON}/>
-                {/* <Tab label="Connect by Server" value={TAB_OPTIONS.SERVER}/> */}
+                <Tab label="I don't own any pigeons :(" value={TAB_OPTIONS.SERVER}/>
               </Tabs>
             </AppBar>
             {currentTab === TAB_OPTIONS.ABOUT1 && <AboutPigeonRTC1Tab onMoreInfoBtnClick={() => this.handleTabChange(TAB_OPTIONS.ABOUT2)}></AboutPigeonRTC1Tab>}
             {currentTab === TAB_OPTIONS.ABOUT2 && <AboutPigeonRTC2Tab onWtfBtnClick={() => this.handleTabChange(TAB_OPTIONS.ABOUT3)}></AboutPigeonRTC2Tab>}
             {currentTab === TAB_OPTIONS.ABOUT3 && <HowItWorksTab onConnectBtnClick={() => this.handleTabChange(TAB_OPTIONS.PIGEON)}></HowItWorksTab>}
             {currentTab === TAB_OPTIONS.PIGEON && <WebRTCWithCarrierPigeonTab></WebRTCWithCarrierPigeonTab>}
-            {/* {currentTab === TAB_OPTIONS.SERVER && <WebRTCWithServerTab></WebRTCWithServerTab>} */}
+            {currentTab === TAB_OPTIONS.SERVER && <WebRTCWithServerTab></WebRTCWithServerTab>}
           </div>
         </MuiThemeProvider>
       </CssBaseline>
