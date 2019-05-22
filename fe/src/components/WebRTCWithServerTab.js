@@ -113,22 +113,23 @@ class WebRTCWithServerTab extends Component {
 
     return (
       <Grid container spacing={12} className={classes.uiContainer} justify="center" alignItems="stretch">
-        <Grid item xs={4}>
+        {/* <Grid item xs={3}>
           <TextField
             label="Server Url"
             fullWidth
             value={this.state.serverUrl}
             onChange={(event) => this.handleServerUrlChange(event.target.value)}
           />
-        </Grid>
-        <Grid item xs={2}>
+        </Grid> */}
+        <Grid item xs={3}>
           <TextField
             label="Room ID"
+            fullWidth
             value={this.state.roomUuid}
             onChange={(event) => this.handleRoomUuidChange(event.target.value)}
           />
         </Grid>
-        <Grid item xs={2} className={classes.doublePadded}>
+        <Grid item xs={1} className={classes.doublePadded}>
           <Button variant="contained" color="primary" onClick={this.handleConnectClick}>Connect</Button>
         </Grid>
       </Grid>
