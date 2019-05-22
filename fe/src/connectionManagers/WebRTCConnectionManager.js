@@ -41,10 +41,11 @@ const ICE_CONFIGURATION = {
 };
 
 export default class WebRTCConnectionManager {
-  constructor(serverUrl) {
+  constructor(serverUrl, roomUuid) {
     this.rtcConnection = new RTCPeerConnection(ICE_CONFIGURATION);
     this.socket = io.connect(serverUrl);
-
+    
+    this.roomUuid = roomUuid;
     this.localMediaStreamPromise = null;
     this.remoteMediaStreamPromise = null;
 
@@ -53,6 +54,8 @@ export default class WebRTCConnectionManager {
     this.socket.on('offer', this.handleOffer.bind(this));
     this.socket.on('answer', this.handleAnswer.bind(this));
     this.socket.on('ice_candidate', this.handleRemoteIceCandidate.bind(this));
+
+    this.socket.emit('join_room', roomUuid);
   }
 
   async getLocalMediaStream() {
@@ -91,7 +94,7 @@ export default class WebRTCConnectionManager {
     // send an offer
     let localDescription = await this.rtcConnection.createOffer();
     await this.rtcConnection.setLocalDescription(localDescription);
-    this.socket.emit('offer', {description: this.rtcConnection.localDescription});
+    this.socket.emit('offer', this.roomUuid, {description: this.rtcConnection.localDescription});
   }
 
   /* Handle an incoming call */
@@ -106,7 +109,7 @@ export default class WebRTCConnectionManager {
 
     // send an answer
     await this.rtcConnection.setLocalDescription(await this.rtcConnection.createAnswer());
-    this.socket.emit('answer', {description: this.rtcConnection.localDescription});
+    this.socket.emit('answer', this.roomUuid, {description: this.rtcConnection.localDescription});
   }
 
   /* Handle an answer to our offer (if we initiated the call) */
@@ -119,7 +122,7 @@ export default class WebRTCConnectionManager {
     console.log(`handleIceCandidate: ${candidate}`);
 
     if (!candidate) return;
-    this.socket.emit('ice_candidate', {candidate});
+    this.socket.emit('ice_candidate', this.roomUuid, {candidate});
   }
 
   async handleRemoteIceCandidate({candidate}) {
